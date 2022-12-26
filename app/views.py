@@ -1,0 +1,40 @@
+from django.shortcuts import render
+from app.forms import *
+# Create your views here.
+from django.http import HttpResponse
+
+def insert_topic(request):
+    form=TopicForm()
+    d={'form':form}
+    if request.method=='POST':
+        form_data=TopicForm(request.POST)
+        if form_data.is_valid():
+            form_data.save()
+            return HttpResponse('given topic data is inserted successfully')
+    return render(request,'insert_topic.html',d)
+
+
+
+def insert_webpage(request):
+    form=WebpageForm()
+    d={'form':form}
+    if request.method=='POST':
+        form_data=WebpageForm(request.POST)
+        if form_data.is_valid():
+            form_data.save()
+            return HttpResponse('Webpage model is saved by ModelForms')
+    
+    return render(request,'insert_webpage.html',d)
+
+
+def insert_AccessRecords(request):
+    form=AccessRecordsForm()
+    d={'form':form}
+    if request.method=='POST':
+        form_data=AccessRecordsForm(request.POST)
+        if form_data.is_valid():
+            form_data.save()
+            return HttpResponse('AccessRecords model is saved by ModelForms')
+    
+    return render(request,'insert_AccessRecords.html',d)
+
